@@ -16,6 +16,7 @@ class WorkConfirmation extends Model
         'at_date',
         'at_time',
         'description',
+        'status',
         'remark',
         'is_status',
     ];

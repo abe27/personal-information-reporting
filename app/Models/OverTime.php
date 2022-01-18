@@ -6,18 +6,20 @@ use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class EmployeeJobDetail extends Model
+class OverTime extends Model
 {
     use HasFactory, Uuids;
 
     public $fillable = [
         'profile_id',
         'section_id',
-        'position_id',
-        'shift_id',
-        'employee_date',
-        'emp_status',
-        'salary',
+        'on_date',
+        'start_time',
+        'end_time',
+        'description',
+        'remark',
+        'status',
+        'is_holiday',
         'is_status',
     ];
 }

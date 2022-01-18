@@ -6,18 +6,13 @@ use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class EmployeeJobDetail extends Model
+class AttachmentLeave extends Model
 {
     use HasFactory, Uuids;
 
     public $fillable = [
-        'profile_id',
-        'section_id',
-        'position_id',
-        'shift_id',
-        'employee_date',
-        'emp_status',
-        'salary',
+        'leave_id',
+        'leave_attachment_url',
         'is_status',
     ];
 }

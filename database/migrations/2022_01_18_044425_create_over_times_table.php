@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWorkConfirmationsTable extends Migration
+class CreateOverTimesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,21 @@ class CreateWorkConfirmationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('work_confirmations', function (Blueprint $table) {
+        Schema::create('over_times', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('profile_id');
-            $table->uuid('reason_id');
-            $table->date('at_date');
-            $table->time('at_time');
+            $table->uuid('section_id');
+            $table->date('on_date')->nullable();
+            $table->time('start_time');
+            $table->time('end_time');
             $table->longText('description')->nullable();
-            $table->enum('status', ['-', 'In Process', 'Reject', 'Approved'])->nullable()->default('-');
             $table->longText('remark')->nullable();
+            $table->enum('status', ['-', 'In Process', 'Reject', 'Approved'])->nullable()->default('-');
+            $table->boolean('is_holiday')->nullable()->default(false);
             $table->boolean('is_status')->nullable()->default(false);
             $table->timestamps();
             $table->foreign('profile_id')->reference('id')->on('profiles')->cascadeDelete();
-            $table->foreign('reason_id')->reference('id')->on('reason_attendances')->cascadeDelete();
+            $table->foreign('section_id')->reference('id')->on('sections')->cascadeDelete();
         });
     }
 
@@ -36,6 +38,6 @@ class CreateWorkConfirmationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('work_confirmations');
+        Schema::dropIfExists('over_times');
     }
 }
