@@ -17,9 +17,6 @@ class CreateEmployeeJobDetailsTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('profile_id');
             $table->uuid('company_id');
-            $table->uuid('section_id');
-            $table->uuid('position_id');
-            $table->uuid('shift_id');
             $table->date('employee_date')->nullable();
             $table
                 ->enum('emp_status', ['-', 'P', 'N'])
@@ -33,9 +30,6 @@ class CreateEmployeeJobDetailsTable extends Migration
             $table->timestamps();
             $table->foreign('profile_id')->reference('id')->on('profiles')->cascadeDelete();
             $table->foreign('company_id')->reference('id')->on('companies')->nullOnDelete();
-            $table->foreign('section_id')->reference('id')->on('sections')->nullOnDelete();
-            $table->foreign('position_id')->reference('id')->on('positions')->nullOnDelete();
-            $table->foreign('shift_id')->reference('id')->on('shiftments')->nullOnDelete();
         });
     }
 

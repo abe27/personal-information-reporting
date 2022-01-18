@@ -18,14 +18,18 @@ class CreateOrganizationsTable extends Migration
             $table->uuid('profile_id');
             $table->uuid('section_id');
             $table->uuid('position_id');
+            $table->uuid('shiftment_id');
             $table->uuid('whs_id');
+            $table->uuid('territory_id');
             $table->longText('description')->nullable();
             $table->boolean('is_status')->nullable()->default(false);
             $table->timestamps();
             $table->foreign('profile_id')->reference('id')->on('profiles')->cascadeDelete();
             $table->foreign('section_id')->reference('id')->on('sections')->nullOnDelete();
             $table->foreign('position_id')->reference('id')->on('positions')->nullOnDelete();
+            $table->foreign('shiftment_id')->reference('id')->on('shiftments')->nullOnDelete();
             $table->foreign('whs_id')->reference('id')->on('whs')->nullOnDelete();
+            $table->foreign('territory_id')->reference('id')->on('territories')->nullOnDelete();
         });
     }
 

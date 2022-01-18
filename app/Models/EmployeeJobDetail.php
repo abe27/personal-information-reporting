@@ -12,9 +12,6 @@ class EmployeeJobDetail extends Model
 
     public $fillable = [
         'profile_id',
-        'section_id',
-        'position_id',
-        'shift_id',
         'employee_date',
         'emp_status',
         'salary',

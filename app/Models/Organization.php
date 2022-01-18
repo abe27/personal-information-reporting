@@ -14,7 +14,9 @@ class Organization extends Model
         'profile_id',
         'section_id',
         'position_id',
+        'shiftment_id',
         'whs_id',
+        'territory_id',
         'description',
         'is_status',
     ];

@@ -6,16 +6,16 @@ use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class RegisterForTrain extends Model
+class ActionForArea extends Model
 {
     use HasFactory, Uuids;
 
     public $fillable = [
-        'train_id',
-        'profile_id',
+        'area_id',
+        'activity_id',
+        'on_date',
         'score',
-        'status',
-        'is_status',
         'description',
+        'is_status',
     ];
 }

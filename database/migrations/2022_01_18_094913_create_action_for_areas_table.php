@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRegisterForTrainsTable extends Migration
+class CreateActionForAreasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,17 @@ class CreateRegisterForTrainsTable extends Migration
      */
     public function up()
     {
-        Schema::create('register_for_trains', function (Blueprint $table) {
+        Schema::create('action_for_areas', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('train_id');
-            $table->uuid('profile_id');
+            $table->uuid('area_id');
+            $table->uuid('activity_id');
+            $table->date('on_date');
             $table->decimal('score', 8, 2)->nullable()->default(0);
-            $table->enum('status', ['-', 'Register', 'Training', 'Test', 'Not Pass', 'Completed', 'Cancel'])->nullable()->default('-');
             $table->longText('description')->nullable();
             $table->boolean('is_status')->nullable()->default(false);
             $table->timestamps();
-            $table->foreign('train_id')->reference('id')->on('trainings')->cascadeDelete();
-            $table->foreign('profile_id')->reference('id')->on('profiles')->cascadeDelete();
+            $table->foreign('area_id')->reference('id')->on('territories')->cascadeDelete();
+            $table->foreign('activity_id')->reference('id')->on('activites_lists')->cascadeDelete();
         });
     }
 
@@ -34,6 +34,6 @@ class CreateRegisterForTrainsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('register_for_trains');
+        Schema::dropIfExists('action_for_areas');
     }
 }
