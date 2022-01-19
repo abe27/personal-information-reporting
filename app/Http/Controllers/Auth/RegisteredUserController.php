@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Mail\TestMail;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Mail;
 
 class RegisteredUserController extends Controller
 {
@@ -40,16 +42,28 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        // $user = User::create([
+        //     'username' => $request->username,
+        //     'email' => $request->email,
+        //     'password' => Hash::make($request->password),
+        // ]);
 
-        event(new Registered($user));
+        //Send Mail
+        $this->testmail($request->email);
 
-        Auth::login($user);
+        // event(new Registered($user));
+
+        // Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
+    }
+
+    public function testmail($mail)
+    {
+        $email = $mail;
+        //หรือ ใช้ relationship เรียกจากตาราง user
+        //$email = $article->user->email;
+
+        Mail::to($email)->send(new TestMail());
     }
 }
