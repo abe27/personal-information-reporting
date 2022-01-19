@@ -13,8 +13,6 @@ class ActionForArea extends Model
     public $fillable = [
         'area_id',
         'activity_id',
-        'on_date',
-        'score',
         'description',
         'is_status',
     ];

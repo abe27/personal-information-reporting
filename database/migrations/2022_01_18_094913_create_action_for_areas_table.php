@@ -17,8 +17,6 @@ class CreateActionForAreasTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('area_id');
             $table->uuid('activity_id');
-            $table->date('on_date');
-            $table->decimal('score', 8, 2)->nullable()->default(0);
             $table->longText('description')->nullable();
             $table->boolean('is_status')->nullable()->default(false);
             $table->timestamps();
