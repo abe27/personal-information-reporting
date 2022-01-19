@@ -15,11 +15,11 @@ class CreateAttachmentLeavesTable extends Migration
     {
         Schema::create('attachment_leaves', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('leave_id');
+            $table->uuid('leave_id')->unsigned();
             $table->string('leave_attachment_url');
             $table->boolean('is_status')->nullable()->default(false);
             $table->timestamps();
-            $table->foreign('leave_id')->reference('id')->on('leaves')->cascadeDelete();
+            $table->foreign('leave_id')->references('id')->on('leaves')->cascadeDelete();
         });
     }
 

@@ -15,7 +15,7 @@ class CreateEmployeeEtcsTable extends Migration
     {
         Schema::create('employee_etcs', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('profile_id');
+            $table->uuid('profile_id')->unsigned();
             $table->boolean('car_drived')->nullable()->default(false);
             $table->boolean('car_drived_license')->nullable()->default(false);
             $table->boolean('motocycle_drived')->nullable()->default(false);
@@ -26,7 +26,7 @@ class CreateEmployeeEtcsTable extends Migration
             $table->longText('description')->nullable();
             $table->boolean('is_status')->nullable()->default(false);
             $table->timestamps();
-            $table->foreign('profile_id')->reference('id')->on('profiles')->cascadeDelete();
+            $table->foreign('profile_id')->references('id')->on('profiles')->cascadeDelete();
         });
     }
 

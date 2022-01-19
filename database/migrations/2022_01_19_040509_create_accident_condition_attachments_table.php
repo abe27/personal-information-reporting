@@ -15,11 +15,11 @@ class CreateAccidentConditionAttachmentsTable extends Migration
     {
         Schema::create('accident_condition_attachments', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('accident_detail_id');
+            $table->uuid('accident_detail_id')->unsigned();
             $table->string('accident_detail_urls');
             $table->boolean('is_status')->nullable()->default(false);
             $table->timestamps();
-            $table->foreign('accident_detail_id')->reference('id')->on('accident_details')->cascadeDelete();
+            $table->foreign('accident_detail_id')->references('id')->on('accident_details')->cascadeDelete();
         });
     }
 

@@ -15,8 +15,8 @@ class CreateCartonsTable extends Migration
     {
         Schema::create('cartons', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('tarpg_id');
-            $table->uuid('part_id');
+            $table->uuid('tarpg_id')->unsigned();
+            $table->uuid('part_id')->unsigned();
             $table->string('rcno')->unique();
             $table->string('seq')->nullable();
             $table->string('serialno')->nullable();
@@ -26,8 +26,8 @@ class CreateCartonsTable extends Migration
             $table->decimal('cost', 8, 2)->nullable()->default(0);
             $table->boolean('is_status')->nullable()->default(false);
             $table->timestamps();
-            $table->foreign('tarpg_id')->reference('id')->on('part_tarpgs')->cascadeDelete();
-            $table->foreign('part_id')->reference('id')->on('parts')->cascadeDelete();
+            $table->foreign('tarpg_id')->references('id')->on('part_tarpgs')->cascadeDelete();
+            $table->foreign('part_id')->references('id')->on('parts')->cascadeDelete();
         });
     }
 

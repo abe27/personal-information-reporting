@@ -15,8 +15,8 @@ class CreateOverTimesTable extends Migration
     {
         Schema::create('over_times', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('profile_id');
-            $table->uuid('section_id');
+            $table->uuid('profile_id')->unsigned();
+            $table->uuid('section_id')->unsigned();
             $table->date('on_date')->nullable();
             $table->time('start_time');
             $table->time('end_time');
@@ -26,8 +26,8 @@ class CreateOverTimesTable extends Migration
             $table->boolean('is_holiday')->nullable()->default(false);
             $table->boolean('is_status')->nullable()->default(false);
             $table->timestamps();
-            $table->foreign('profile_id')->reference('id')->on('profiles')->cascadeDelete();
-            $table->foreign('section_id')->reference('id')->on('sections')->cascadeDelete();
+            $table->foreign('profile_id')->references('id')->on('profiles')->cascadeDelete();
+            $table->foreign('section_id')->references('id')->on('sections')->cascadeDelete();
         });
     }
 

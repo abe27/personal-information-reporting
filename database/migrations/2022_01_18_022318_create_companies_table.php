@@ -19,15 +19,11 @@ class CreateCompaniesTable extends Migration
             $table->string('company')->unique();
             $table->string('addres_1')->nullable();
             $table->longText('addres_2')->nullable();
-            $table->uuid('country_id');
+            $table->uuid('country_id')->unsigned();
             $table->string('email')->nullable();
             $table->string('tel_no', 55)->nullable()->default('-');
             $table->timestamps();
-            $table
-                ->foreign('country_id')
-                ->reference('id')
-                ->on('zip_codes')
-                ->cascadeDelete();
+            $table->foreign('country_id')->references('id')->on('zip_codes')->cascadeDelete();
         });
     }
 

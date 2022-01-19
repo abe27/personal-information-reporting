@@ -15,8 +15,8 @@ class CreateWorkConfirmationsTable extends Migration
     {
         Schema::create('work_confirmations', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('profile_id');
-            $table->uuid('reason_id');
+            $table->uuid('profile_id')->unsigned();
+            $table->uuid('reason_id')->unsigned();
             $table->date('at_date');
             $table->time('at_time');
             $table->longText('description')->nullable();
@@ -24,8 +24,8 @@ class CreateWorkConfirmationsTable extends Migration
             $table->longText('remark')->nullable();
             $table->boolean('is_status')->nullable()->default(false);
             $table->timestamps();
-            $table->foreign('profile_id')->reference('id')->on('profiles')->cascadeDelete();
-            $table->foreign('reason_id')->reference('id')->on('reason_attendances')->cascadeDelete();
+            $table->foreign('profile_id')->references('id')->on('profiles')->cascadeDelete();
+            $table->foreign('reason_id')->references('id')->on('reason_attendances')->cascadeDelete();
         });
     }
 

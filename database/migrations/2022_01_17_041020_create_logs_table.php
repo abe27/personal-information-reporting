@@ -15,14 +15,14 @@ class CreateLogsTable extends Migration
     {
         Schema::create('logs', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('user_id');
+            $table->uuid('user_id')->nullable()->unsigned();
             $table->string('subject');
             $table->string('url');
             $table->string('method');
             $table->ipAddress('visitor');
             $table->longText('agent');
             $table->timestamps();
-            $table->foreign('user_id')->reference('id')->on('users')->nullOnDelete();
+            $table->foreign('user_id')->references('id')->on('users')->nullOnDelete();
         });
     }
 

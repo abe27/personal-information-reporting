@@ -15,12 +15,12 @@ class CreateZipCodesTable extends Migration
     {
         Schema::create('zip_codes', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('district_id');
+            $table->uuid('district_id')->unsigned();
             $table->string('zipcode');
             $table->string('place');
             $table->boolean('is_status')->nullable()->default(false);
             $table->timestamps();
-            $table->foreign('district_id')->reference('id')->on('districts')->cascadeDelete();
+            $table->foreign('district_id')->references('id')->on('districts')->cascadeDelete();
         });
     }
 

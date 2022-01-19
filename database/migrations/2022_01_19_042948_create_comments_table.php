@@ -15,13 +15,13 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('webboard_id');
+            $table->uuid('webboard_id')->unsigned();
             $table->longText('description');
-            $table->uuid('profile_id')->nullable();
+            $table->uuid('profile_id')->nullable()->unsigned();
             $table->boolean('is_status')->nullable()->default(false);
             $table->timestamps();
-            $table->foreign('webboard_id')->reference('id')->on('webboards')->cascadeDelete();
-            $table->foreign('profile_id')->reference('id')->on('profiles')->nullOnDelete();
+            $table->foreign('webboard_id')->references('id')->on('webboards')->cascadeDelete();
+            $table->foreign('profile_id')->references('id')->on('profiles')->nullOnDelete();
         });
     }
 

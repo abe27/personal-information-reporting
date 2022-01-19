@@ -15,12 +15,12 @@ class CreateAcidetCausesTable extends Migration
     {
         Schema::create('acidet_causes', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('accident_id');
+            $table->uuid('accident_id')->unsigned();
             $table->longText('analyze_cause');
             $table->longText('prevent');
             $table->boolean('is_status')->nullable()->default(false);
             $table->timestamps();
-            $table->foreign('accident_id')->reference('id')->on('accident_heders')->cascadeDelete();
+            $table->foreign('accident_id')->references('id')->on('accident_heders')->cascadeDelete();
         });
     }
 

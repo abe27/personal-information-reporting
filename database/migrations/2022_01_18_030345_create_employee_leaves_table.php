@@ -15,7 +15,7 @@ class CreateEmployeeLeavesTable extends Migration
     {
         Schema::create('employee_leaves', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('profile_id');
+            $table->uuid('profile_id')->unsigned();
             $table->decimal('business_leave_limit', 4, 2)->nullable()->default(5);
             $table->decimal('business_leave_total', 4, 2)->nullable()->default(0);
             $table->decimal('vacation_leave_limit', 4, 2)->nullable()->default(0);
@@ -34,7 +34,7 @@ class CreateEmployeeLeavesTable extends Migration
             $table->decimal('married_leave_total', 4, 2)->nullable()->default(0);
             $table->boolean('is_status')->nullable()->default(false);
             $table->timestamps();
-            $table->foreign('profile_id')->reference('id')->on('profiles')->cascadeDelete();
+            $table->foreign('profile_id')->references('id')->on('profiles')->cascadeDelete();
         });
     }
 

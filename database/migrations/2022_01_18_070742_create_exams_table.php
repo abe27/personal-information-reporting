@@ -15,12 +15,12 @@ class CreateExamsTable extends Migration
     {
         Schema::create('exams', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('practic_id');
+            $table->uuid('practic_id')->unsigned();
             $table->longText('subject');
             $table->decimal('score', 8, 2)->nullable()->default(0);
             $table->boolean('is_status')->nullable()->default(false);
             $table->timestamps();
-            $table->foreign('practic_id')->reference('id')->on('practic_tests')->cascadeDelete();
+            $table->foreign('practic_id')->references('id')->on('practic_tests')->cascadeDelete();
         });
     }
 

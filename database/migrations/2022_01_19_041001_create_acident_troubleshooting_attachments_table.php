@@ -15,11 +15,11 @@ class CreateAcidentTroubleshootingAttachmentsTable extends Migration
     {
         Schema::create('acident_troubleshooting_attachments', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('accident_cause_id');
+            $table->uuid('accident_cause_id')->unsigned();
             $table->string('attachment_url');
             $table->boolean('is_status')->nullable()->default(false);
             $table->timestamps();
-            $table->foreign('accident_cause_id')->reference('id')->on('acidet_causes')->cascadeDelete();
+            $table->foreign('accident_cause_id')->references('id')->on('acidet_causes')->cascadeDelete();
         });
     }
 

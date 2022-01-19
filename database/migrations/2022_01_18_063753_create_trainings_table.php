@@ -19,14 +19,14 @@ class CreateTrainingsTable extends Migration
             $table->date('on_date');
             $table->time('from_time');
             $table->time('to_time');
-            $table->uuid('room_id');
-            $table->uuid('trainer_id');
+            $table->uuid('room_id')->unsigned();
+            $table->uuid('trainer_id')->unsigned();
             $table->longText('description')->nullable();
             $table->enum('status', ['-', 'In Process', 'Training', 'Closed'])->nullable()->default('-');
             $table->boolean('is_status')->nullable()->default(false);
             $table->timestamps();
-            $table->foreign('room_id')->reference('id')->on('training_rooms')->cascadeDelete();
-            $table->foreign('trainer_id')->reference('id')->on('trainers')->cascadeDelete();
+            $table->foreign('room_id')->references('id')->on('training_rooms')->cascadeDelete();
+            $table->foreign('trainer_id')->references('id')->on('trainers')->cascadeDelete();
         });
     }
 

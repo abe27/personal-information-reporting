@@ -15,13 +15,13 @@ class CreateRepliesTable extends Migration
     {
         Schema::create('replies', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('comment_id');
+            $table->uuid('comment_id')->unsigned();
             $table->longText('description');
-            $table->uuid('profile_id')->nullable();
+            $table->uuid('profile_id')->nullable()->unsigned();
             $table->boolean('is_status')->nullable()->default(false);
             $table->timestamps();
-            $table->foreign('comment_id')->reference('id')->on('comments')->cascadeDelete();
-            $table->foreign('profile_id')->reference('id')->on('profiles')->nullOnDelete();
+            $table->foreign('comment_id')->references('id')->on('comments')->cascadeDelete();
+            $table->foreign('profile_id')->references('id')->on('profiles')->nullOnDelete();
         });
     }
 

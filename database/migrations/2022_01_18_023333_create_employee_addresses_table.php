@@ -15,10 +15,10 @@ class CreateEmployeeAddressesTable extends Migration
     {
         Schema::create('employee_addresses', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('profile_id');
+            $table->uuid('profile_id')->unsigned();
             $table->string('address_1');
             $table->longText('address_2')->nullable();
-            $table->uuid('country_id');
+            $table->uuid('country_id')->unsigned();
             $table
                 ->enum('status', ['-', 'Seft', 'Rent'])
                 ->nullable()
@@ -38,12 +38,12 @@ class CreateEmployeeAddressesTable extends Migration
             $table->timestamps();
             $table
                 ->foreign('profile_id')
-                ->reference('id')
+                ->references('id')
                 ->on('positions')
                 ->cascadeDelete();
             $table
                 ->foreign('country_id')
-                ->reference('id')
+                ->references('id')
                 ->on('zip_codes')
                 ->cascadeDelete();
         });

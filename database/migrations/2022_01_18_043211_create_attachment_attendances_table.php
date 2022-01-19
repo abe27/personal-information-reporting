@@ -15,11 +15,11 @@ class CreateAttachmentAttendancesTable extends Migration
     {
         Schema::create('attachment_attendances', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('work_confirm_id');
+            $table->uuid('work_confirm_id')->unsigned();
             $table->string('work_attachment_url');
             $table->boolean('is_status')->nullable()->default(false);
             $table->timestamps();
-            $table->foreign('work_confirm_id')->reference('id')->on('work_confirmations')->cascadeDelete();
+            $table->foreign('work_confirm_id')->references('id')->on('work_confirmations')->cascadeDelete();
         });
     }
 

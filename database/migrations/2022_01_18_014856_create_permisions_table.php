@@ -15,12 +15,12 @@ class CreatePermisionsTable extends Migration
     {
         Schema::create('permisions', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('user_id');
+            $table->uuid('user_id')->unsigned();
             $table->enum('permision_group', ['User', 'Approve', 'Administrator'])->nullable()->default('User');
             $table->longText('description')->nullable();
             $table->boolean('is_status')->nullable()->default(false);
             $table->timestamps();
-            $table->foreign('user_id')->reference('id')->on('users')->cascadeDelete();
+            $table->foreign('user_id')->references('id')->on('users')->cascadeDelete();
         });
     }
 

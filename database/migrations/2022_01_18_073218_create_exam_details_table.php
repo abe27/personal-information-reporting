@@ -15,12 +15,12 @@ class CreateExamDetailsTable extends Migration
     {
         Schema::create('exam_details', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('exam_id');
+            $table->uuid('exam_id')->unsigned();
             $table->longText('title');
             $table->boolean('is_correct')->nullable()->default(false);
             $table->boolean('is_status')->nullable()->default(false);
             $table->timestamps();
-            $table->foreign('exam_id')->reference('id')->on('exams')->cascadeDelete();
+            $table->foreign('exam_id')->references('id')->on('exams')->cascadeDelete();
         });
     }
 

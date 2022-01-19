@@ -15,11 +15,11 @@ class CreateDistrictsTable extends Migration
     {
         Schema::create('districts', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('province_id');
+            $table->uuid('province_id')->unsigned();
             $table->string('district')->unique();
             $table->boolean('is_status')->nullable()->default(false);
             $table->timestamps();
-            $table->foreign('province_id')->reference('id')->on('provinces')->cascadeDelete();
+            $table->foreign('province_id')->references('id')->on('provinces')->cascadeDelete();
         });
     }
 

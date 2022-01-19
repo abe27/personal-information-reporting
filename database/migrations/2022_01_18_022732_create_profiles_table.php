@@ -15,7 +15,7 @@ class CreateProfilesTable extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('user_id');
+            $table->uuid('user_id')->unsigned();
             $table->string('empcode')->unique();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
@@ -37,6 +37,7 @@ class CreateProfilesTable extends Migration
                 ->nullable()
                 ->default(false);
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->cascadeDelete();
         });
     }
 

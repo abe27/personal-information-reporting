@@ -15,15 +15,15 @@ class CreateRegisterForTrainsTable extends Migration
     {
         Schema::create('register_for_trains', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('train_id');
-            $table->uuid('profile_id');
+            $table->uuid('train_id')->unsigned();
+            $table->uuid('profile_id')->unsigned();
             $table->decimal('score', 8, 2)->nullable()->default(0);
             $table->enum('status', ['-', 'Register', 'Training', 'Test', 'Not Pass', 'Completed', 'Cancel'])->nullable()->default('-');
             $table->longText('description')->nullable();
             $table->boolean('is_status')->nullable()->default(false);
             $table->timestamps();
-            $table->foreign('train_id')->reference('id')->on('trainings')->cascadeDelete();
-            $table->foreign('profile_id')->reference('id')->on('profiles')->cascadeDelete();
+            $table->foreign('train_id')->references('id')->on('trainings')->cascadeDelete();
+            $table->foreign('profile_id')->references('id')->on('profiles')->cascadeDelete();
         });
     }
 

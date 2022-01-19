@@ -15,12 +15,12 @@ class CreateTakeExamsTable extends Migration
     {
         Schema::create('take_exams', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('training_id');
-            $table->uuid('exam_detail_id');
+            $table->uuid('training_id')->unsigned();
+            $table->uuid('exam_detail_id')->unsigned();
             $table->boolean('is_status')->nullable()->default(false);
             $table->timestamps();
-            $table->foreign('training_id')->reference('id')->on('register_for_trains')->cascadeDelete();
-            $table->foreign('exam_detail_id')->reference('id')->on('exam_details')->cascadeDelete();
+            $table->foreign('training_id')->references('id')->on('register_for_trains')->cascadeDelete();
+            $table->foreign('exam_detail_id')->references('id')->on('exam_details')->cascadeDelete();
         });
     }
 

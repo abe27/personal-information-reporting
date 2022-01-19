@@ -15,13 +15,13 @@ class CreateActivitesListsTable extends Migration
     {
         Schema::create('activites_lists', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('category_id');
+            $table->uuid('category_id')->unsigned();
             $table->string('title');
             $table->longText('description')->nullable();
             $table->decimal('full_score', 8, 2)->nullable()->default(3);
             $table->boolean('is_status')->nullable()->default(false);
             $table->timestamps();
-            $table->foreign('category_id')->reference('id')->on('category_activities')->cascadeDelete();
+            $table->foreign('category_id')->references('id')->on('category_activities')->cascadeDelete();
         });
     }
 

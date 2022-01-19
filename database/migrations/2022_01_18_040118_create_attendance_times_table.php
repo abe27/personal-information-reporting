@@ -15,7 +15,7 @@ class CreateAttendanceTimesTable extends Migration
     {
         Schema::create('attendance_times', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('profile_id');
+            $table->uuid('profile_id')->unsigned();
             $table->date('on_date');
             $table->time('in_time')->nullable();
             $table->time('out_time')->nullable();
@@ -23,7 +23,7 @@ class CreateAttendanceTimesTable extends Migration
             $table->enum('status', ['-', 'Absent', 'Reject', 'Approved'])->nullable()->default('-');
             $table->boolean('is_status')->nullable()->default(false);
             $table->timestamps();
-            $table->foreign('profile_id')->reference('id')->on('profiles')->cascadeDelete();
+            $table->foreign('profile_id')->references('id')->on('profiles')->cascadeDelete();
         });
     }
 

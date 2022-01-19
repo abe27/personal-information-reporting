@@ -15,8 +15,8 @@ class CreateEmployeeJobDetailsTable extends Migration
     {
         Schema::create('employee_job_details', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('profile_id');
-            $table->uuid('company_id');
+            $table->uuid('profile_id')->unsigned();
+            $table->uuid('company_id')->nullable()->unsigned();
             $table->date('employee_date')->nullable();
             $table
                 ->enum('emp_status', ['-', 'P', 'N'])
@@ -28,8 +28,8 @@ class CreateEmployeeJobDetailsTable extends Migration
                 ->nullable()
                 ->default(false);
             $table->timestamps();
-            $table->foreign('profile_id')->reference('id')->on('profiles')->cascadeDelete();
-            $table->foreign('company_id')->reference('id')->on('companies')->nullOnDelete();
+            $table->foreign('profile_id')->references('id')->on('profiles')->cascadeDelete();
+            $table->foreign('company_id')->references('id')->on('companies')->nullOnDelete();
         });
     }
 

@@ -15,14 +15,14 @@ class CreateActivitiesTable extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('action_id');
-            $table->uuid('action_by_id');
+            $table->uuid('action_id')->unsigned();
+            $table->uuid('action_by_id')->unsigned();
             $table->date('on_date');
             $table->decimal('score', 8, 2);
             $table->boolean('is_status')->nullable()->default(false);
             $table->timestamps();
-            $table->foreign('action_id')->reference('id')->on('action_for_areas')->cascadeDelete();
-            $table->foreign('action_by_id')->reference('id')->on('users')->cascadeDelete();
+            $table->foreign('action_id')->references('id')->on('action_for_areas')->cascadeDelete();
+            $table->foreign('action_by_id')->references('id')->on('users')->cascadeDelete();
         });
     }
 

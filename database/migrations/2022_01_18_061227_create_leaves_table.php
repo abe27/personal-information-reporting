@@ -18,7 +18,7 @@ class CreateLeavesTable extends Migration
             $table->date('on_date');
             $table->time('from_time');
             $table->time('to_time');
-            $table->uuid('leave_type_id');
+            $table->uuid('leave_type_id')->nullable()->unsigned();
             $table->longText('reason');
             $table->longText('description')->nullable();
             $table
@@ -32,7 +32,7 @@ class CreateLeavesTable extends Migration
             $table->timestamps();
             $table
                 ->foreign('leave_type_id')
-                ->reference('id')
+                ->references('id')
                 ->on('leave_types')
                 ->nullOnDelete();
         });

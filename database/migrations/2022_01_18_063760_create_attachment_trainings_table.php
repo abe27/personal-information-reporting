@@ -15,11 +15,11 @@ class CreateAttachmentTrainingsTable extends Migration
     {
         Schema::create('attachment_trainings', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('training_id');
+            $table->uuid('training_id')->unsigned();
             $table->string('attachment_training_url');
             $table->boolean('is_status')->nullable()->default(false);
             $table->timestamps();
-            $table->foreign('training_id')->reference('id')->on('trainings')->cascadeDelete();
+            $table->foreign('training_id')->references('id')->on('trainings')->cascadeDelete();
         });
     }
 

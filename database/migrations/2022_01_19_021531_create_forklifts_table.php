@@ -15,12 +15,12 @@ class CreateForkliftsTable extends Migration
     {
         Schema::create('forklifts', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('section_id');
+            $table->uuid('section_id')->unsigned();
             $table->string('forklift_no')->unique();
             $table->string('forklift_img')->nullable();
             $table->boolean('is_status')->nullable()->default(false);
             $table->timestamps();
-            $table->foreign('section_id')->reference('id')->on('sections')->cascadeDelete();
+            $table->foreign('section_id')->references('id')->on('sections')->cascadeDelete();
         });
     }
 
