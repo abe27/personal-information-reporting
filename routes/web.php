@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\DashBoardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +25,26 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::prefix('/dashboard')->group(function () {
+        Route::get('/get', [DashBoardController::class, 'index'])->name('dashboard.index');
+    });
 
-require __DIR__.'/auth.php';
+    Route::prefix('/attendance')->group(function () {
+        Route::get('/get', [DashBoardController::class, 'index'])->name('attendance.index');
+    });
+    Route::prefix('/training')->group(function () {
+        Route::get('/get', [DashBoardController::class, 'index'])->name('training.index');
+    });
+    Route::prefix('/activity')->group(function () {
+        Route::get('/get', [DashBoardController::class, 'index'])->name('activity.index');
+    });
+    Route::prefix('/accident')->group(function () {
+        Route::get('/get', [DashBoardController::class, 'index'])->name('accident.index');
+    });
+    Route::prefix('/webboard')->group(function () {
+        Route::get('/get', [DashBoardController::class, 'index'])->name('webboard.index');
+    });
+});
+
+require __DIR__ . '/auth.php';

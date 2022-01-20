@@ -1,7 +1,24 @@
 import React, { useState } from 'react'
 import ApplicationLogo from '@/Components/ApplicationLogo'
 import NavMenuMobile from '@/Components/NavMenuMobile'
+import NavMenu from '@/Components/NavMenu'
 import { Link } from '@inertiajs/inertia-react'
+
+const menuItem = [
+  { name: 'Dashboard', href: 'dashboard.index', icon: 'dashboard' },
+  { name: 'Time Attendance', href: 'attendance.index', icon: 'dashboard' },
+  { name: 'Training', href: 'training.index', icon: 'dashboard' },
+  { name: '5S Activity', href: 'activity.index', icon: 'dashboard' },
+  { name: 'Accident', href: 'accident.index', icon: 'dashboard' },
+  { name: 'Webboard', href: 'webboard.index', icon: 'dashboard' }
+]
+
+const menuProfile = [
+  { name: 'My Profile', href: 'dashboard.index', icon: 'dashboard' },
+  { name: 'Help Center', href: 'dashboard.index', icon: 'dashboard' },
+  { name: 'System Setting', href: 'dashboard.index', icon: 'dashboard' },
+  { name: 'Sign Out', href: 'dashboard.index', icon: 'dashboard' },
+];
 
 const Authenticated = ({ auth, header, children }) => {
   const [show, setShow] = useState(false)
@@ -21,26 +38,7 @@ const Authenticated = ({ auth, header, children }) => {
                   <ApplicationLogo className="block w-auto text-gray-500" />
                 </Link>
               </div>
-              <ul className="pr-4 xl:flex items-center h-full hidden">
-                <li className="cursor-pointer h-full flex items-center text-sm text-indigo-700 tracking-normal border-b-2 border-indigo-700">
-                  Dashboard
-                </li>
-                <li className="cursor-pointer h-full flex items-center text-sm text-gry-800 mx-10 tracking-normal">
-                  Time Attandance
-                </li>
-                <li className="cursor-pointer h-full flex items-center text-sm text-gry-800 mr-10 tracking-normal">
-                  Training
-                </li>
-                <li className="cursor-pointer h-full flex items-center text-sm text-gray-800 mr-10 tracking-normal">
-                  Activity
-                </li>
-                <li className="cursor-pointer h-full flex items-center text-sm text-gray-800 mr-10 tracking-normal">
-                  Accident
-                </li>
-                <li className="cursor-pointer h-full flex items-center text-sm text-gray-800 mr-10 tracking-normal">
-                  Webboard
-                </li>
-              </ul>
+              <NavMenu menuItem={menuItem}/>
             </div>
             <div className="h-full xl:flex items-center justify-end hidden">
               <div className="w-full h-full flex items-center">
@@ -167,7 +165,7 @@ const Authenticated = ({ auth, header, children }) => {
                       alt="logo"
                     />
                     <p className="text-gray-800 text-sm ml-2">
-                      {auth.username}
+                      {auth.user.username}
                     </p>
                   </div>
                 </div>
