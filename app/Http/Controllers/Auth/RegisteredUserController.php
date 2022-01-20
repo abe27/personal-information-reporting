@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Mail\TestMail;
+use App\Helpers\LogActivity;
+use App\Mail\VerifyRegister;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -42,28 +43,22 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        // $user = User::create([
-        //     'username' => $request->username,
-        //     'email' => $request->email,
-        //     'password' => Hash::make($request->password),
-        // ]);
+        $user = User::create([
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
 
         //Send Mail
-        $this->testmail($request->email);
+        Mail::to(env('MAIL_USERNAME'))->send(new VerifyRegister($user));
 
-        // event(new Registered($user));
+        event(new Registered($user));
 
-        // Auth::login($user);
+        Auth::login($user);
+
+        // Add log
+        LogActivity::addToLog("ลงทะเบียนผู้ใช้งานใหม่");
 
         return redirect(RouteServiceProvider::HOME);
-    }
-
-    public function testmail($mail)
-    {
-        $email = $mail;
-        //หรือ ใช้ relationship เรียกจากตาราง user
-        //$email = $article->user->email;
-
-        Mail::to($email)->send(new TestMail());
     }
 }
