@@ -30,24 +30,28 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/', [DashBoardController::class, 'index'])->name('dashboard.index');
     });
 
+    Route::prefix('/profile')->group(function () {
+        Route::get('/index', [DashBoardController::class, 'index'])->name('profile.index');
+    });
+
     Route::prefix('/attendance')->group(function () {
-        Route::get('/get', [DashBoardController::class, 'index'])->name('attendance.index');
+        Route::get('/index', [DashBoardController::class, 'index'])->name('attendance.index');
     });
 
     Route::prefix('/training')->group(function () {
-        Route::get('/get', [DashBoardController::class, 'index'])->name('training.index');
+        Route::get('/index', [DashBoardController::class, 'index'])->name('training.index');
     });
 
     Route::prefix('/activity')->group(function () {
-        Route::get('/get', [DashBoardController::class, 'index'])->name('activity.index');
+        Route::get('/index', [DashBoardController::class, 'index'])->name('activity.index');
     });
 
     Route::prefix('/accident')->group(function () {
-        Route::get('/get', [DashBoardController::class, 'index'])->name('accident.index');
+        Route::get('/index', [DashBoardController::class, 'index'])->name('accident.index');
     });
 
     Route::prefix('/webboard')->group(function () {
-        Route::get('/get', [DashBoardController::class, 'index'])->name('webboard.index');
+        Route::get('/index', [DashBoardController::class, 'index'])->name('webboard.index');
     });
 });
 
