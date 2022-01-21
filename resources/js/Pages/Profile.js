@@ -70,7 +70,7 @@ const Profile = (props) => {
         { name: 'Position', value: 'IT Support' },
         { name: 'Section', value: 'IT' },
         { name: 'Start At', value: '01/02/2021' },
-        { name: 'Salary', value: 100 },
+        { name: 'Salary', value: '***********' },
       ]
       setTimeout(() => resolve(obj), 6000)
     })
@@ -216,7 +216,7 @@ const Profile = (props) => {
             <div className="p-2 flex-none max-w-7xl w-auto">
               <div className="drop-shadow rounded">
                 <Image
-                  boxSize="305px"
+                  boxSize="150px"
                   src="https://i.pravatar.cc/400"
                   alt="Dan Abramov"
                 />
