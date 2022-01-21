@@ -1,13 +1,10 @@
 import React from 'react'
-import Authenticated from '@/Layouts/Authenticated'
+import { Authenticated } from '@/Layouts'
 import { Head } from '@inertiajs/inertia-react'
 
 const Dashboard = (props) => {
   return (
-    <Authenticated
-      auth={props.auth}
-      errors={props.errors}
-    >
+    <Authenticated auth={props.auth} errors={props.errors}>
       <Head title="Dashboard" />
       <div className="my-6 lg:my-12 container px-6 mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between pb-4 border-b border-gray-300">
         <div>

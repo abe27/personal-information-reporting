@@ -1,16 +1,16 @@
-import React from "react";
-import Button from "@/Components/Button";
-import Guest from "@/Layouts/Guest";
-import { Head, Link, useForm } from "@inertiajs/inertia-react";
+import React from 'react'
+import { Button } from '@/Components/Elements'
+import { Guest } from '@/Layouts'
+import { Head, Link, useForm } from '@inertiajs/inertia-react'
 
 const VerifyEmail = ({ status }) => {
-  const { post, processing } = useForm();
+  const { post, processing } = useForm()
 
   const submit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    post(route("verification.send"));
-  };
+    post(route('verification.send'))
+  }
 
   return (
     <Guest>
@@ -22,7 +22,7 @@ const VerifyEmail = ({ status }) => {
         didn't receive the email, we will gladly send you another.
       </div>
 
-      {status === "verification-link-sent" && (
+      {status === 'verification-link-sent' && (
         <div className="mb-4 font-medium text-sm text-green-600">
           A new verification link has been sent to the email address you
           provided during registration.
@@ -34,7 +34,7 @@ const VerifyEmail = ({ status }) => {
           <Button processing={processing}>Resend Verification Email</Button>
 
           <Link
-            href={route("logout")}
+            href={route('logout')}
             method="post"
             as="button"
             className="underline text-sm text-gray-600 hover:text-gray-900"
@@ -44,7 +44,7 @@ const VerifyEmail = ({ status }) => {
         </div>
       </form>
     </Guest>
-  );
-};
+  )
+}
 
-export default VerifyEmail;
+export default VerifyEmail

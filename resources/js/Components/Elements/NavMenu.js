@@ -20,8 +20,4 @@ const NavMenu = ({ menuItem }) => {
   )
 }
 
-// {/* <li key={i.name} className="cursor-pointer h-full flex items-center text-sm text-indigo-700 tracking-normal border-b-2 border-indigo-700">
-//             {i.name}
-//           </li> */}
-
 export default NavMenu

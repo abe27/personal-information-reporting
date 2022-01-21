@@ -1,5 +1,5 @@
 import React from 'react'
-import Authenticated from '@/Layouts/Authenticated'
+import { Authenticated  } from '@/Layouts'
 import { Head } from '@inertiajs/inertia-react'
 
 const TimeAttendance = (props) => {

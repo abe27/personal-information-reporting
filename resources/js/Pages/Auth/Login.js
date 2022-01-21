@@ -1,39 +1,41 @@
-import React, { useEffect } from "react";
-import Button from "@/Components/Button";
-import Checkbox from "@/Components/Checkbox";
-import Guest from "@/Layouts/Guest";
-import Input from "@/Components/Input";
-import Label from "@/Components/Label";
-import ValidationErrors from "@/Components/ValidationErrors";
-import { Head, Link, useForm } from "@inertiajs/inertia-react";
+import React, { useEffect } from 'react'
+import {
+  Button,
+  Checkbox,
+  Input,
+  Label,
+  ValidationErrors,
+} from '@/Components/Elements'
+import { Guest } from '@/Layouts'
+import { Head, Link, useForm } from '@inertiajs/inertia-react'
 
 const Login = ({ status, canResetPassword }) => {
   const { data, setData, post, processing, errors, reset } = useForm({
-    username: "",
-    password: "",
-    remember: "",
-  });
+    username: '',
+    password: '',
+    remember: '',
+  })
 
   useEffect(() => {
     return () => {
-      reset("password");
-    };
-  }, []);
+      reset('password')
+    }
+  }, [])
 
   const onHandleChange = (event) => {
     setData(
       event.target.name,
-      event.target.type === "checkbox"
+      event.target.type === 'checkbox'
         ? event.target.checked
-        : event.target.value
-    );
-  };
+        : event.target.value,
+    )
+  }
 
   const submit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    post(route("login"));
-  };
+    post(route('login'))
+  }
 
   return (
     <Guest>
@@ -88,7 +90,7 @@ const Login = ({ status, canResetPassword }) => {
         <div className="flex items-center justify-end mt-4">
           {canResetPassword && (
             <Link
-              href={route("password.request")}
+              href={route('password.request')}
               className="underline text-sm text-gray-600 hover:text-gray-900"
             >
               Forgot your password?
@@ -101,7 +103,7 @@ const Login = ({ status, canResetPassword }) => {
         </div>
       </form>
     </Guest>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

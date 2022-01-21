@@ -27,21 +27,25 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('/dashboard')->group(function () {
-        Route::get('/get', [DashBoardController::class, 'index'])->name('dashboard.index');
+        Route::get('/', [DashBoardController::class, 'index'])->name('dashboard.index');
     });
 
     Route::prefix('/attendance')->group(function () {
         Route::get('/get', [DashBoardController::class, 'index'])->name('attendance.index');
     });
+
     Route::prefix('/training')->group(function () {
         Route::get('/get', [DashBoardController::class, 'index'])->name('training.index');
     });
+
     Route::prefix('/activity')->group(function () {
         Route::get('/get', [DashBoardController::class, 'index'])->name('activity.index');
     });
+
     Route::prefix('/accident')->group(function () {
         Route::get('/get', [DashBoardController::class, 'index'])->name('accident.index');
     });
+
     Route::prefix('/webboard')->group(function () {
         Route::get('/get', [DashBoardController::class, 'index'])->name('webboard.index');
     });
