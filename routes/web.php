@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\DashBoardController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +32,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     Route::prefix('/profile')->group(function () {
-        Route::get('/index', [DashBoardController::class, 'index'])->name('profile.index');
+        Route::get('/index', [ProfileController::class, 'index'])->name('profile.index');
     });
 
     Route::prefix('/attendance')->group(function () {
@@ -52,6 +53,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::prefix('/webboard')->group(function () {
         Route::get('/index', [DashBoardController::class, 'index'])->name('webboard.index');
+    });
+
+    Route::prefix('/administrator')->group(function () {
+        Route::get('/index', [DashBoardController::class, 'index'])->name('admin.setting.index');
     });
 });
 

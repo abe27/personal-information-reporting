@@ -16,13 +16,28 @@ class CreateEmployeeEducationTable extends Migration
         Schema::create('employee_education', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('profile_id')->unsigned();
-            $table->uuid('education_id')->unsigned()->nullable();
+            $table
+                ->uuid('education_id')
+                ->unsigned()
+                ->nullable();
             $table->string('edu_from');
-            $table->integer('edu_from_year', 4)->nullable();
-            $table->boolean('is_status')->nullable()->default(false);
+            $table->integer('edu_from_year')->nullable();
+            $table->decimal('edu_gpa', 8, 2)->nullable();
+            $table
+                ->boolean('is_status')
+                ->nullable()
+                ->default(false);
             $table->timestamps();
-            $table->foreign('profile_id')->references('id')->on('profiles')->cascadeDelete();
-            $table->foreign('education_id')->references('id')->on('education')->nullOnDelete();
+            $table
+                ->foreign('profile_id')
+                ->references('id')
+                ->on('profiles')
+                ->cascadeDelete();
+            $table
+                ->foreign('education_id')
+                ->references('id')
+                ->on('education')
+                ->nullOnDelete();
         });
     }
 

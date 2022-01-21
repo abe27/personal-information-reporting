@@ -23,12 +23,15 @@ const NavProfile = ({ auth, menuItem }) => {
     await new Promise((resolve) =>
       setTimeout(() => {
         setProfileAvatar('https://i.pravatar.cc/300')
+        console.log('get avatar profile on top')
         resolve()
       }, 2550),
     )
   }
 
-  useEffect(() => getAvatar)
+  useEffect(() => {
+    getAvatar()
+  }, [])
 
   return (
     <div

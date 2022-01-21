@@ -10,6 +10,7 @@ import NavMenuMobile from './NavMenuMobile'
 import ResponsiveNavLink from './ResponsiveNavLink'
 import ValidationErrors from './ValidationErrors'
 import NavPanelMobile from './NavPanelMobile'
+import SkeletonLoading from './SkeletonLoading'
 
 export {
   NavProfile,
@@ -24,4 +25,5 @@ export {
   ResponsiveNavLink,
   ValidationErrors,
   NavPanelMobile,
+  SkeletonLoading,
 }

@@ -15,6 +15,7 @@ class EmployeeEducation extends Model
         'education_id',
         'edu_from',
         'edu_from_year',
+        'edu_gpa',
         'is_status',
     ];
 }

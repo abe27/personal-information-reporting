@@ -23,7 +23,7 @@ const menuItem = [
 const menuProfile = [
   { name: 'My Profile', href: 'profile.index', icon: ProfileIcon },
   // { name: 'Help Center', href: 'dashboard.index', icon: HelpIcon },
-  { name: 'System Setting', href: 'dashboard.index', icon: SettingIcon },
+  { name: 'System Setting', href: 'admin.setting.index', icon: SettingIcon },
   { name: 'Sign Out', href: 'logout', icon: LogOutIcon },
 ]
 
@@ -42,6 +42,7 @@ const Authenticated = ({ auth, header, children }) => {
                 <Link href="/">
                   <ApplicationLogo className="block w-auto text-gray-500" />
                 </Link>
+                <h3 className="text-base text-gray-800 font-bold tracking-normal leading-tight ml-3 hidden lg:block">The Timer</h3>
               </div>
               <NavMenu menuItem={menuItem} />
             </div>
