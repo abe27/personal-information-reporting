@@ -130,7 +130,7 @@ const Profile = (props) => {
       <div className="my-6 lg:my-12 container px-6 mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between pb-4 border-b border-gray-300">
         <div>
           <h4 className="text-2xl font-bold leading-tight text-gray-800">
-            User {} Profile
+            User Profile
           </h4>
           <ul className="flex flex-col md:flex-row items-start md:items-center text-gray-600 text-sm mt-3">
             <li className="flex items-center mr-3 mt-3 md:mt-0">
@@ -202,7 +202,7 @@ const Profile = (props) => {
         </div>
         <div className="mt-6 lg:mt-0">
           <button className="mx-2 my-2 bg-white transition duration-150 ease-in-out focus:outline-none hover:bg-gray-100 rounded text-indigo-700 px-6 py-2 text-sm">
-            Back
+            <a href={route('dashboard')}>Back</a>
           </button>
           <button className="transition duration-150 ease-in-out hover:bg-indigo-600 focus:outline-none border bg-indigo-700 rounded text-white px-8 py-2 text-sm">
             Edit Profile
@@ -240,7 +240,7 @@ const Profile = (props) => {
               <div className="p-2 mt-4">
                 <Information title="Talent Information" items={talent} />
               </div>
-              <div className="p-2 mt-4">
+              <div className="p-2 mt-4 mb-4">
                 <Information title="Leave Information" items={leave}/>
               </div>
             </div>
